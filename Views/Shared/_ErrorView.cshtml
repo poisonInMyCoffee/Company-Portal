@@ -1,0 +1,16 @@
+﻿@model CompanyPortal.Models.ErrorViewModel
+
+
+
+@if (ViewData.ModelState["Contact"]?.Errors.Count > 0)
+{
+    <div class="alert alert-danger">
+    <strong>Attention!</strong> @Model.ContactError
+</div>
+}
+
+ </br>
+
+<a href="@Url.Action("EmployerForm", "Employer")" class="btn btn-primary">Back to Form</a>
+
+

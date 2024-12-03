@@ -1,0 +1,18 @@
+﻿@model CompanyPortal.Models.EmployeeLogin
+
+@{
+    ViewData["Message"] = "Select your department";
+}
+@using (Html.BeginForm("DepartmentSelection", "Employee", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="DepartmentID">Select appropriate Department</label>
+        <select asp-for="Department" class="form-control" asp-items="Model.Departments">
+            <option value="">-- Select Department --</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

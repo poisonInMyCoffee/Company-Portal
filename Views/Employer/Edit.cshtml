@@ -1,0 +1,35 @@
+﻿@model CompanyPortal.Models.EmployerLogin
+
+<form action="@Url.Action("UpdateEmployer", "Employer")" method="post">
+    <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="ID" value="@Model.ID" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name" value="@Model.Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" value="@Model.Email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="contact">Contact:</label>
+        <input type="text" name="Contact" value="@Model.Contact" required>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Department, new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.Department, Model.Departments, "-- Select Department --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fas fa-edit"></i> Update
+    </button>
+</form>
+
+

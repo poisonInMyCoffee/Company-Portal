@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <p>@ViewBag["message"]</p>
+}
+<body>
+
+    <!-- Title Section -->
+    <h1 style="font-size: 48px;justify-content:center;text-align:center; color: cornflowerblue; margin-bottom: 40px; text-decoration: underline;">Company Portal</h1>
+
+    <!-- Buttons Section -->
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <button style="padding: 15px 30px; font-size: 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 8px; width: 200px; transition: background-color 0.3s;">
+            @Html.ActionLink("New Employee Signup", "EmployeeForm", "Employee")
+        </button>
+        <button style="padding: 15px 30px; font-size: 20px; background-color: #2196F3; color: white; border: none; cursor: pointer; border-radius: 8px; width: 200px; transition: background-color 0.3s;">
+            @Html.ActionLink("Existing Employee", "EmployeeForm", "Employee")
+        </button>
+    </div>
+
+</body>

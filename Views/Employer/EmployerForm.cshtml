@@ -1,0 +1,119 @@
+﻿@model CompanyPortal.Models.EmployerLogin
+
+
+@{
+    ViewBag.Title = "Employer Login";
+
+}
+@* var a= @ViewData["Success"];
+
+<script>
+    alert(a);
+</script> *@
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("EmployerForm", "Employer", FormMethod.Post))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID)
+        @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contact)
+        @Html.TextBoxFor(model => model.Contact, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        <label for="DepartmentID">Select Department</label>
+        <select asp-for="Department" class="form-control" asp-items="Model.Departments">
+            <option value="">-- Select Department --</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+     <br/>
+
+
+    <div class="form-group">
+        <label for="UploadedFile">Upload Image/Media</label>
+        <input asp-for="UploadedFile" type="file" class="form-control" id="fileInput" onchange="previewFile()" />
+
+        <!-- Image Preview -->
+        <img id="previewImage" src="@Model?.FilePath" alt="Preview"
+             style="max-width: 200px; max-height: 200px; display: @(!string.IsNullOrEmpty(Model?.FilePath) ? "block" : "none");" />
+
+        <!-- Video Preview (if required later) -->
+        <video id="previewVideo" controls style="max-width: 200px; max-height: 200px; display: none;"></video>
+    </div>
+
+
+
+    
+    <br />
+
+    <button type="submit" class="btn btn-primary">
+        @if (Model != null)
+        {
+            if (Model.ID == 0)
+            {
+                <text>Submit</text>  <!-- For new registration -->
+            }
+            else
+            {
+                <text>Update</text>  <!-- For editing existing user -->
+            }
+        }
+        else
+        {
+            <text>Submit</text>  <!-- Default text for null model -->
+        }
+    </button>
+}
+
+<script>
+    function previewFile() {
+        const fileInput = document.getElementById("fileInput");
+        const previewImage = document.getElementById("previewImage");
+        const previewVideo = document.getElementById("previewVideo");
+
+        // Reset previews
+        previewImage.style.display = "none";
+        previewVideo.style.display = "none";
+        previewImage.src = "";
+        previewVideo.src = "";
+
+        const file = fileInput.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+
+            // Check file type to display appropriate preview
+            if (file.type.startsWith("image/")) {
+                previewImage.src = fileURL;
+                previewImage.style.display = "block";
+            } else if (file.type.startsWith("video/")) {
+                previewVideo.src = fileURL;
+                previewVideo.style.display = "block";
+            }
+        }
+    }
+</script>
+

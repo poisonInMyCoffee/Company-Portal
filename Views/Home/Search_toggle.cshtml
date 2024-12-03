@@ -1,0 +1,127 @@
+﻿@{
+    var searchResults = ViewData["SearchResults"] as List<EmployerLogin>;
+    var message = ViewBag.Message as string;
+}
+
+@model List<CompanyPortal.Models.EmployerLogin>
+
+
+@using (Html.BeginForm("Search_toggle", "Home", FormMethod.Post))
+{
+    <div class="search-container">
+        @Html.Label("Search Employers")
+        @Html.TextBox("emp_Name", null, new { @class = "search-input", placeholder = "Enter employer name" })
+        <button type="submit" class="search-button">Search</button>
+    </div>
+}
+
+<style>
+    /* Basic styling for the search bar container */
+    .search-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Styling for the label */
+    .search-label {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Styling for the input field */
+    .search-input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+    }
+
+    /* Styling for the search button */
+    .search-button {
+        padding: 8px 15px;
+        font-size: 14px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+    /* Table styling for better presentation */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-info">
+        @message
+    </div>
+    return;
+}
+
+
+@if (searchResults != null && searchResults.Count == 0)
+{
+    <div style="color: red;">
+        <strong>No employer found</strong>
+    </div>
+}
+
+@if (searchResults != null && searchResults.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employer in searchResults)
+            {
+                <tr>
+                    <td>@employer.ID</td>
+                    <td>@employer.Name</td>
+                    <td>@employer.Email</td>
+                    <td>@employer.Contact</td>
+                    <td>@employer.Department</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<body>
+
+    <!-- Title Section -->
+    <h1 style="font-size: 48px;justify-content:center;text-align:center; color: cornflowerblue; margin-bottom: 40px; text-decoration: underline;">Company Portal</h1>
+
+    <!-- Buttons Section -->
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <button style="padding: 15px 30px; font-size: 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 8px; width: 200px; transition: background-color 0.3s;">
+            @Html.ActionLink("Employer's Login", "EmployerForm", "Employer")
+        </button>
+        <button style="padding: 15px 30px; font-size: 20px; background-color: #2196F3; color: white; border: none; cursor: pointer; border-radius: 8px; width: 200px; transition: background-color 0.3s;">
+            @Html.ActionLink("Employee's Login", "DepartmentSelection", "Home")
+        </button>
+    </div>
+
+</body>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<footer>
+
+    <div class="text-center">
+        <h3 class="display-8">Welcome to the Company's Portal'</h3>
+        <p>Maintained and developed by <a href="https://github.com/poisonInMyCoffee.git">me</a> with ASP.NET Core and Coffee &#129326</p>
+    </div>
+
+</footer>
+
